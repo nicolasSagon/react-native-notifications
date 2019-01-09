@@ -85,6 +85,12 @@ public class RNNotificationsModule extends ReactContextBaseJavaModule implements
     }
 
     @ReactMethod
+    public void registerTopic(Promise promise, String topicString){
+        Log.d(LOGTAG, "Register topic : " + topicString);
+        promise.resolve(topicString);
+    }
+
+    @ReactMethod
     public void cancelLocalNotification(int notificationId) {
         IPushNotificationsDrawer notificationsDrawer = PushNotificationsDrawer.get(getReactApplicationContext().getApplicationContext());
         notificationsDrawer.onNotificationClearRequest(notificationId);
