@@ -57,8 +57,8 @@ export class NotificationsAndroid {
     return await RNNotifications.isRegisteredForRemoteNotifications();
   }
 
-  static async registerTopic(){
-    return await RNNotifications.registerTopic();
+  static async registerTopic(topicName){
+    return await RNNotifications.registerTopic(topicName);
   }
 
   static refreshToken() {

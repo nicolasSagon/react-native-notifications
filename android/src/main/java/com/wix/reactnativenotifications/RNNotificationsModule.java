@@ -85,7 +85,7 @@ public class RNNotificationsModule extends ReactContextBaseJavaModule implements
     }
 
     @ReactMethod
-    public void registerTopic(Promise promise, String topicString){
+    public void registerTopic(String topicString, Promise promise){
         Log.d(LOGTAG, "Register topic : " + topicString);
         promise.resolve(topicString);
     }
