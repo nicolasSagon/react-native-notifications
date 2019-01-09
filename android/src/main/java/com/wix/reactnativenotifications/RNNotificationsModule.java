@@ -25,6 +25,7 @@ import com.wix.reactnativenotifications.core.notificationdrawer.IPushNotificatio
 import com.wix.reactnativenotifications.core.notificationdrawer.PushNotificationsDrawer;
 import com.wix.reactnativenotifications.gcm.GcmInstanceIdRefreshHandlerService;
 import com.google.android.gms.gcm.GcmPubSub;
+import java.io.IOException;
 
 import static com.wix.reactnativenotifications.Defs.LOGTAG;
 
@@ -89,8 +90,14 @@ public class RNNotificationsModule extends ReactContextBaseJavaModule implements
     public void registerTopic(String topicString, String token, Promise promise){
         Log.d(LOGTAG, "Register topic : " + topicString);
         GcmPubSub pubSub = GcmPubSub.getInstance(getReactApplicationContext().getApplicationContext());
-        pubSub.subscribe(token, "/topics/" + topicString, null);
-        promise.resolve(topicString);
+        try{
+            pubSub.subscribe(token, "/topics/" + topicString, null);
+            promise.resolve(true);
+        }
+        catch(IOException e) {
+            Log.e(LOGTAG, e);
+            promise.resolve(false);
+        }
     }
 
     @ReactMethod
