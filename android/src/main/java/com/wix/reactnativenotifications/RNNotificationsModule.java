@@ -95,7 +95,7 @@ public class RNNotificationsModule extends ReactContextBaseJavaModule implements
             promise.resolve(true);
         }
         catch(IOException e) {
-            Log.e(LOGTAG, e);
+            Log.e(LOGTAG, e.getMessage());
             promise.resolve(false);
         }
     }
