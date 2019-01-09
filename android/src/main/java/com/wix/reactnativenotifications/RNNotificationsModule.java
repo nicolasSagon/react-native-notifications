@@ -89,7 +89,7 @@ public class RNNotificationsModule extends ReactContextBaseJavaModule implements
     public void registerTopic(String topicString, String token, Promise promise){
         Log.d(LOGTAG, "Register topic : " + topicString);
         GcmPubSub pubSub = GcmPubSub.getInstance(getReactApplicationContext().getApplicationContext());
-        pubSub.subscribe(token, "/topics/" + topic, null);
+        pubSub.subscribe(token, "/topics/" + topicString, null);
         promise.resolve(topicString);
     }
 
