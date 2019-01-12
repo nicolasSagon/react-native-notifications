@@ -10,10 +10,11 @@ public class PushNotificationProps {
         mBundle = new Bundle();
     }
 
-    public PushNotificationProps(String title, String body) {
+    public PushNotificationProps(String title, String body, String link) {
         mBundle = new Bundle();
         mBundle.putString("title", title);
         mBundle.putString("body", body);
+        mBundle.putString("link", link);
     }
 
     public PushNotificationProps(Bundle bundle) {
@@ -26,6 +27,10 @@ public class PushNotificationProps {
 
     public String getBody() {
         return mBundle.getString("body");
+    }
+
+    public String getLink(){
+        return mBundle.getString("link");
     }
 
     public Bundle asBundle() {
