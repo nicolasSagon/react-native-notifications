@@ -101,6 +101,20 @@ public class RNNotificationsModule extends ReactContextBaseJavaModule implements
     }
 
     @ReactMethod
+    public void unsubScribeTopics(String topicString, String token, Promise promise){
+        Log.d(LOGTAG, "Unsubscribe topic : " + topicString);
+        GcmPubSub pubSub = GcmPubSub.getInstance(getReactApplicationContext().getApplicationContext());
+        try{
+            pubSub.unsubscribe(token, "/topics/" + topicString);
+            promise.resolve(true);
+        }
+        catch(IOException e) {
+            Log.e(LOGTAG, e.getMessage());
+            promise.resolve(false);
+        }
+    }
+
+    @ReactMethod
     public void cancelLocalNotification(int notificationId) {
         IPushNotificationsDrawer notificationsDrawer = PushNotificationsDrawer.get(getReactApplicationContext().getApplicationContext());
         notificationsDrawer.onNotificationClearRequest(notificationId);
