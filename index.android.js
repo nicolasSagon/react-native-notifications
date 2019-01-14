@@ -61,6 +61,10 @@ export class NotificationsAndroid {
     return await RNNotifications.registerTopic(topicName, token);
   }
 
+  static async unsubScribeTopics(topicName, token){
+    return await RNNotifications.unsubScribeTopics(topicName, token);
+  }
+
   static refreshToken() {
     RNNotifications.refreshToken();
   }
